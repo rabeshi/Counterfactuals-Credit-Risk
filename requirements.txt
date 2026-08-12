@@ -1,0 +1,6 @@
+dice-ml==0.12
+matplotlib
+numpy
+pandas
+scikit-learn
+xgboost

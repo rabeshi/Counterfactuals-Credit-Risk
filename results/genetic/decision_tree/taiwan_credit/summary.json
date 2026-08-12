@@ -1,0 +1,14 @@
+{
+  "model": "decision_tree",
+  "dataset": "taiwan_credit",
+  "queries": 10,
+  "requested_counterfactuals_per_query": 4,
+  "generated_counterfactuals": 39,
+  "valid_counterfactuals": 39,
+  "validity_rate": 1.0,
+  "query_coverage": 1.0,
+  "mean_sparsity_changes": 10.179487179487179,
+  "mean_proximity": 0.4146299222917932,
+  "mean_set_diversity": 0.41601960390529485,
+  "failed_queries": 0
+}

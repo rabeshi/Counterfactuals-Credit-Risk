@@ -1,0 +1,14 @@
+{
+  "model": "adaboost",
+  "dataset": "german_credit",
+  "queries": 10,
+  "requested_counterfactuals_per_query": 4,
+  "generated_counterfactuals": 31,
+  "valid_counterfactuals": 31,
+  "validity_rate": 1.0,
+  "query_coverage": 0.9,
+  "mean_sparsity_changes": 3.2903225806451615,
+  "mean_proximity": 0.3520843207776879,
+  "mean_set_diversity": 0.1285714771599603,
+  "failed_queries": 1
+}

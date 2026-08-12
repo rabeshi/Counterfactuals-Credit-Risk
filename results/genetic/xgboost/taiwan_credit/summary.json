@@ -1,0 +1,14 @@
+{
+  "model": "xgboost",
+  "dataset": "taiwan_credit",
+  "queries": 10,
+  "requested_counterfactuals_per_query": 4,
+  "generated_counterfactuals": 38,
+  "valid_counterfactuals": 38,
+  "validity_rate": 1.0,
+  "query_coverage": 1.0,
+  "mean_sparsity_changes": 13.842105263157896,
+  "mean_proximity": 1.021544752186989,
+  "mean_set_diversity": 0.4613361494009537,
+  "failed_queries": 0
+}

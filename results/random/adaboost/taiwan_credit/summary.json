@@ -1,0 +1,15 @@
+{
+  "dice_method": "random",
+  "model": "adaboost",
+  "dataset": "taiwan_credit",
+  "queries": 10,
+  "requested_counterfactuals_per_query": 4,
+  "generated_counterfactuals": 40,
+  "valid_counterfactuals": 40,
+  "validity_rate": 1.0,
+  "query_coverage": 1.0,
+  "mean_sparsity_changes": 5.775,
+  "mean_proximity": 11.179337702368565,
+  "mean_set_diversity": 12.809447725213854,
+  "failed_queries": 0
+}
