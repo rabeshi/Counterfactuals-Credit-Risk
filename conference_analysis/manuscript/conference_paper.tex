@@ -79,6 +79,11 @@ d(x,x')=\frac{1}{p}\left[\sum_{j\in N}\frac{|x_j-x'_j|}{\mathrm{IQR}(X_j)}+\sum_
 \end{equation}
 Diversity is the mean pairwise mixed-type distance within a returned set. Raw distances are interpreted within datasets because feature spaces differ.
 
+\subsection{Statistical Design}
+The model--dataset pair is the experimental cell, and the applicant query is the independent observational unit. Counterfactuals are nested within queries; they are not treated as independent observations. The primary estimand is query coverage. Secondary estimands are query-level mean sparsity, proximity, and within-set diversity. For a covered query, sparsity and proximity are first averaged over its valid counterfactuals, preventing queries that return more alternatives from receiving greater statistical weight.
+
+Two-sided 95\% Wilson score intervals quantify uncertainty in coverage. For continuous counterfactual metrics, two-sided 95\% percentile intervals are obtained from 10,000 nonparametric bootstrap resamples of queries, with seed 2026. Intervals are calculated separately within every model--dataset cell. The analysis is exploratory: the ten cases were chosen as a computational stress test rather than by a prospective power calculation, and each classifier selected its own highest-risk cohort. Therefore, we do not perform paired hypothesis tests or claim statistically significant superiority between classifiers. Cross-model differences are reported as descriptive effect contrasts with uncertainty. Confirmatory testing requires a shared applicant cohort and repeated DiCE seeds. No correction for multiple comparisons is applied because no family of null-hypothesis tests is conducted.
+
 \section{Results}
 \subsection{Predictive Performance}
 Table~\ref{tab:auc} reports ROC--AUC. XGBoost ranked first on all datasets, while the single tree ranked last. Accuracy alone was misleading under imbalance: on Give Me Some Credit, random forest accuracy was 0.934 but balanced accuracy was 0.638, whereas XGBoost achieved 0.799 and 0.787, respectively.
@@ -101,6 +106,8 @@ XGBoost & \textbf{0.809} & \textbf{0.869} & \textbf{0.777} \\
 
 \subsection{Counterfactual Performance}
 Table~\ref{tab:cf} summarizes genetic DiCE. Thirteen of 15 settings achieved full coverage. Logistic regression covered only five of ten Give Me Some Credit cases; AdaBoost missed one German query. Most generated profiles were valid, although decision-tree and XGBoost validity on Give Me Some Credit were 92.5\% and 95.0\%.
+
+Uncertainty is substantial at $n=10$ queries per cell. Full coverage corresponds to a Wilson 95\% interval of [0.722, 1.000], 90\% coverage to [0.596, 0.982], and the 50\% logistic-regression coverage on Give Me Some Credit to [0.237, 0.763]. Query-level bootstrap analysis nevertheless preserves the main descriptive pattern. For German Credit, mean changes were 4.28 [3.80, 4.73] for logistic regression and 2.70 [2.50, 2.85] for the decision tree. For Give Me Some Credit, logistic regression required 5.55 [4.55, 6.90] changes among covered queries, compared with 4.01 [3.14, 4.86] for the tree. Brackets report 95\% intervals. These wide coverage intervals reinforce that the current experiment supports hypothesis generation rather than definitive model ranking; complete cell-level intervals are provided in the repository.
 
 \begin{table*}[t]
 \caption{Genetic DiCE Results for Ten High-Risk Queries per Cell}
