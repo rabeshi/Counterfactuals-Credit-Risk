@@ -43,6 +43,29 @@ Each dataset is divided into stratified 75\% training and 25\% test partitions w
 \subsection{Predictive Models}
 Five classifiers are trained separately: class-weighted logistic regression; a balanced decision tree with minimum leaf size five; a 300-tree balanced random forest \cite{breiman2001random} with minimum leaf size two; AdaBoost \cite{freund1997adaboost} with 200 estimators, learning rate 0.5, and balanced sample weights; and XGBoost \cite{chen2016xgboost} with 300 estimators, maximum depth four, learning rate 0.05, row and feature subsampling of 0.8, and class-ratio weighting. Predicted probabilities at or above 0.50 are assigned to default. Evaluation includes ROC--AUC, average precision, accuracy, balanced accuracy, F1, and Brier score.
 
+Table~\ref{tab:hyperparameters} records the fixed hyperparameters used in all datasets. Parameters not shown retain their library defaults. No dataset-specific tuning or test-set optimization was performed, preserving a common comparison protocol across model families.
+
+\begin{table*}[t]
+\caption{Predictive-Model and Genetic-DiCE Hyperparameters}
+\label{tab:hyperparameters}
+\centering\scriptsize
+\begin{tabular}{p{2.7cm}p{12.8cm}}
+\toprule
+Component & Configuration \\
+\midrule
+Shared preprocessing & Numeric median imputation and standardization; categorical most-frequent imputation and one-hot encoding; categories with frequency below two grouped by the encoder; unseen categories ignored. \\
+Data split & Stratified 75/25 train--test split; random seed 42. \\
+Logistic regression & Solver=liblinear; class weight=balanced; maximum iterations=1500; random seed=42. \\
+Decision tree & Class weight=balanced; minimum samples per leaf=5; random seed=42. \\
+Random forest & Number of trees=300; class weight=balanced subsample; minimum samples per leaf=2; all processor cores; random seed=42. \\
+AdaBoost & Number of estimators=200; learning rate=0.5; balanced observation weights; random seed=42. \\
+XGBoost & Number of estimators=300; maximum depth=4; learning rate=0.05; row subsample=0.8; feature subsample=0.8; positive-class weight=$n_0/n_1$; evaluation metric=log loss; all processor cores; random seed=42. \\
+DiCE genetic search & Requested counterfactuals=4; desired class=non-default; decision threshold=0.50; proximity weight=1.0; diversity weight=1.0; sparsity weight=0.5; post-hoc sparsity parameter=0.1; immutable and directional constraints defined per dataset; query seed=$42+r$, where $r$ is query rank. \\
+Query design & Ten test cases with the highest model-specific default probabilities per model--dataset pair. \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
 \subsection{Genetic DiCE}
 Let $f(x)$ be the estimated default probability for profile $x$. A counterfactual $x'$ is valid when
 \begin{equation} f(x') < 0.50. \end{equation}
