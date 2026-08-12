@@ -21,18 +21,18 @@ credit scoring, counterfactual explanations, explainable artificial intelligence
 \section{Introduction}
 Machine-learning models are increasingly studied for credit scoring because they can extract predictive structure from heterogeneous applicant and repayment data. Their use in a high-impact domain nevertheless raises a practical interpretability problem. A probability of default communicates a model assessment, but it does not identify what would need to differ for the model to reach another outcome. Feature importance is insufficient for this purpose: an influential variable may be immutable, infeasible to change, or incapable of reversing a prediction by itself.
 
-Counterfactual explanations address this gap by constructing alternative profiles that receive a desired model output. Rather than stating only that repayment history was influential, a counterfactual may specify a combination of lower utilization, fewer delinquencies, or different loan terms that moves a classifier below its adverse threshold. This form of explanation is local, contrastive, and linked directly to a decision \cite{wachter2018counterfactual,ustun2019recourse}. Useful explanations should, however, be valid, close to the original case, sparse, plausible, diverse, and restricted to attributes that may legitimately vary \cite{mothilal2020dice,verma2020review}.
+Counterfactual explanations address this gap by constructing alternative profiles that receive a desired model output. Rather than stating only that repayment history was influential, a counterfactual may specify a combination of lower utilization, fewer delinquencies, or different loan terms that moves a classifier below its adverse threshold. This form of explanation is local, contrastive, and linked directly to a decision \cite{wachter2018counterfactual,ustun2019recourse}. Useful explanations should, however, be valid, close to the original case, sparse, plausible, diverse, robust, and restricted to attributes that may legitimately vary \cite{mothilal2020dice,verma2020review,keane2021deficits,jiang2024robust}.
 
 The predictive model is itself an important source of variation. Linear, piecewise-constant, bagged, and boosted boundaries can assign different risks to the same population and require different changes to cross a common threshold. A study based on one classifier may therefore conflate properties of the explanation algorithm with properties of the underlying model.
 
 This paper asks: \emph{How does predictive model choice affect the availability and characteristics of genetically optimized counterfactual explanations in credit-risk classification?} We hold the explanation framework constant and compare five classifier families across three benchmark datasets. Our contributions are: (1) a controlled multi-model genetic-DiCE evaluation using common preprocessing and constraints; (2) joint reporting of predictive performance, validity, coverage, sparsity, proximity, and diversity; and (3) evidence that predictive discrimination and access to concise recourse do not necessarily align.
 
 \section{Related Work}
-Wachter, Mittelstadt, and Russell described counterfactual explanations as nearby cases that obtain a different automated outcome without disclosing a model's internal logic \cite{wachter2018counterfactual}. Algorithmic-recourse research similarly emphasizes a person's ability to obtain a desired classification by altering actionable inputs. Ustun, Spangher, and Liu demonstrated that standard modeling choices can materially affect recourse in linear classification \cite{ustun2019recourse}.
+Wachter, Mittelstadt, and Russell described counterfactual explanations as nearby cases that obtain a different automated outcome without disclosing a model's internal logic \cite{wachter2018counterfactual}. Algorithmic-recourse research similarly emphasizes a person's ability to obtain a desired classification by altering actionable inputs. Ustun, Spangher, and Liu demonstrated that standard modeling choices can materially affect recourse in linear classification \cite{ustun2019recourse}. Model-agnostic optimization, graph-based search, multi-objective search, and generative methods subsequently broadened the available design space \cite{karimi2020mace,poyiadzi2020face,russell2019efficient,dandl2020multi,nemirovsky2022countergan}.
 
-Mothilal, Sharma, and Tan proposed Diverse Counterfactual Explanations (DiCE), which generates sets of alternatives rather than one solution \cite{mothilal2020dice}. Its formulation balances outcome validity and proximity while encouraging diversity. Multiple alternatives matter because decision subjects may face different practical constraints. Reviews distinguish validity, proximity, sparsity, plausibility, diversity, actionability, causality, and fairness as separate dimensions of counterfactual quality \cite{verma2020review}.
+Mothilal, Sharma, and Tan proposed Diverse Counterfactual Explanations (DiCE), which generates sets of alternatives rather than one solution \cite{mothilal2020dice}. Its formulation balances outcome validity and proximity while encouraging diversity. Multiple alternatives matter because decision subjects may face different practical constraints. Reviews distinguish validity, proximity, sparsity, plausibility, diversity, actionability, causality, fairness, and robustness as separate dimensions of counterfactual quality \cite{verma2020review,keane2021deficits,jiang2024robust}. Recent work also emphasizes that a model-changing profile is not necessarily a realizable intervention and that recourse itself can create risk or privacy exposure \cite{karimi2021interventions,fokkema2024risks,pawelczyk2023privacy}.
 
-Credit scoring is a natural but difficult recourse setting. Applicant records combine immutable demographics, potentially actionable financial conditions, and historical variables that cannot literally be rewritten. Correlated monthly measures may also yield mathematically valid but operationally implausible profiles. This study therefore treats DiCE outputs as explanations of fitted classifiers, not causal prescriptions.
+Credit scoring is a natural but difficult recourse setting. Applicant records combine immutable demographics, potentially actionable financial conditions, and historical variables that cannot literally be rewritten. Correlated monthly measures may also yield mathematically valid but operationally implausible profiles. Credit-scoring benchmarks additionally show that model ranking depends on discrimination, calibration, class imbalance, and data quality \cite{lessmann2015benchmark,yeh2009taiwan}. This study therefore treats DiCE outputs as explanations of fitted classifiers, not causal prescriptions.
 
 \section{Methodology}
 \subsection{Data and Preprocessing}
@@ -41,7 +41,7 @@ Three public benchmarks are used. German Credit contains 1,000 applicants and cr
 Each dataset is divided into stratified 75\% training and 25\% test partitions with random seed 42. Numeric features are median-imputed and standardized. Categorical features are mode-imputed and one-hot encoded. The held-out samples contain 250, 37,500, and 7,500 observations, with default rates of 0.300, 0.067, and 0.221, respectively.
 
 \subsection{Predictive Models}
-Five classifiers are trained separately: class-weighted logistic regression; a balanced decision tree with minimum leaf size five; a 300-tree balanced random forest with minimum leaf size two; AdaBoost with 200 estimators, learning rate 0.5, and balanced sample weights; and XGBoost with 300 estimators, maximum depth four, learning rate 0.05, row and feature subsampling of 0.8, and class-ratio weighting. Predicted probabilities at or above 0.50 are assigned to default. Evaluation includes ROC--AUC, average precision, accuracy, balanced accuracy, F1, and Brier score.
+Five classifiers are trained separately: class-weighted logistic regression; a balanced decision tree with minimum leaf size five; a 300-tree balanced random forest \cite{breiman2001random} with minimum leaf size two; AdaBoost \cite{freund1997adaboost} with 200 estimators, learning rate 0.5, and balanced sample weights; and XGBoost \cite{chen2016xgboost} with 300 estimators, maximum depth four, learning rate 0.05, row and feature subsampling of 0.8, and class-ratio weighting. Predicted probabilities at or above 0.50 are assigned to default. Evaluation includes ROC--AUC, average precision, accuracy, balanced accuracy, F1, and Brier score.
 
 \subsection{Genetic DiCE}
 Let $f(x)$ be the estimated default probability for profile $x$. A counterfactual $x'$ is valid when
@@ -118,8 +118,45 @@ The decision tree produced the sparsest explanations across all datasets, but al
 
 German counterfactuals were relatively close under all models. Give Me Some Credit yielded extreme distances for some models: mean logistic proximity was 53.32 and random-forest proximity 17.50. The data contain special delinquency values such as 96 and 98; treating them as ordinary counts can dominate normalized distance and create extreme scores. These magnitudes are therefore evidence of data-representation sensitivity, not intrinsically better diversity.
 
+\subsection{Applicant-Level Counterfactual Scenarios}
+Table~\ref{tab:scenarios} translates selected saved outputs into applicant-level scenarios. The XGBoost German case illustrates DiCE's intended value: four distinct profiles moved the same prediction from 0.972 to between 0.141 and 0.247. Alternatives traded shorter duration, lower credit amount, savings category, housing, and guarantor status. The explanation set therefore exposes different routes through the model boundary instead of presenting one recommendation as uniquely necessary.
+
+\begin{table*}[t]
+\caption{Illustrative Counterfactual Scenarios Reconstructed from Saved Genetic-DiCE Outputs}
+\label{tab:scenarios}
+\centering\scriptsize
+\begin{tabular}{p{1.7cm}p{1.4cm}p{1.5cm}p{10.3cm}}
+\toprule
+Dataset/model & Default probability & CF probability & Changes from original profile \\
+\midrule
+German/XGB CF1 & 0.972 & 0.234 & Duration 48$\rightarrow$14 months; credit amount 4308$\rightarrow$338; savings A61$\rightarrow$A64. \\
+German/XGB CF2 & 0.972 & 0.247 & Duration 48$\rightarrow$24; credit amount 4308$\rightarrow$3777; savings A61$\rightarrow$A64; housing A151$\rightarrow$A152. \\
+German/XGB CF3 & 0.972 & 0.195 & Duration 48$\rightarrow$14; credit amount 4308$\rightarrow$3973; savings A61$\rightarrow$A64; housing A151$\rightarrow$A153. \\
+German/XGB CF4 & 0.972 & 0.141 & Duration 48$\rightarrow$4; credit amount 4308$\rightarrow$338; debtor/guarantor A101$\rightarrow$A103; housing A151$\rightarrow$A153. \\
+GMSC/RF & 0.989 & 0.418 & Utilization 1.00$\rightarrow$0; debt ratio 22$\rightarrow$0; delinquency codes 98$\rightarrow$89, 81, and 53 across the three delinquency variables. \\
+Taiwan/tree & 1.000 & 0.000 & Six historical bill amounts and PAY\_AMT4 changed; seven simultaneous changes in total. \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The latter two scenarios demonstrate why threshold validity is not equivalent to useful recourse. The Give Me Some Credit alternative reduces special delinquency codes but leaves values that are not credible ordinary counts. The Taiwan alternative modifies historical monthly records rather than a prospective action. We retain these cases because they reveal model and data defects that a counterfactual audit should surface, but we do not present them as recommendations.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{../results/genetic/xgboost/german_credit/counterfactual_probability_shifts.png}
+\caption{XGBoost probability shifts for high-risk German Credit queries. Each line joins an original prediction to a generated profile; the dashed line is the 0.50 threshold.}
+\label{fig:german-shifts}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{../results/genetic/xgboost/taiwan_credit/feature_change_frequency.png}
+\caption{Features most frequently changed by valid XGBoost counterfactuals in Taiwan Credit. Repeated monthly measures explain the comparatively low sparsity.}
+\label{fig:taiwan-features}
+\end{figure}
+
 \section{Discussion}
-The results demonstrate that counterfactual explanations are conditional on the model being explained. Holding the generator, threshold, and constraints constant did not eliminate differences in coverage or burden. A single-model study may consequently mistake decision geometry for a general property of credit recourse.
+The results demonstrate that counterfactual explanations are conditional on the model being explained. Holding the generator, threshold, and constraints constant did not eliminate differences in coverage or burden. A single-model study may consequently mistake decision geometry for a general property of credit recourse. This observation complements earlier findings that model development affects recourse availability \cite{ustun2019recourse,rawal2020beyond}.
 
 No classifier dominated both prediction and explanation. XGBoost offered the strongest ROC--AUC, whereas the decision tree offered the fewest changes. The latter simplicity should not be interpreted as superiority because it coincided with materially weaker prediction. Coverage also matters: explanations that are excellent for easy cases but unavailable to extreme-risk cases cannot provide universal recourse.
 
