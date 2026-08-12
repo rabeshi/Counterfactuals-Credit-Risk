@@ -84,6 +84,29 @@ The model--dataset pair is the experimental cell, and the applicant query is the
 
 Two-sided 95\% Wilson score intervals quantify uncertainty in coverage. For continuous counterfactual metrics, two-sided 95\% percentile intervals are obtained from 10,000 nonparametric bootstrap resamples of queries, with seed 2026. Intervals are calculated separately within every model--dataset cell. The analysis is exploratory: the ten cases were chosen as a computational stress test rather than by a prospective power calculation, and each classifier selected its own highest-risk cohort. Therefore, we do not perform paired hypothesis tests or claim statistically significant superiority between classifiers. Cross-model differences are reported as descriptive effect contrasts with uncertainty. Confirmatory testing requires a shared applicant cohort and repeated DiCE seeds. No correction for multiple comparisons is applied because no family of null-hypothesis tests is conducted.
 
+\begin{table*}[t]
+\caption{Statistical Design and Inferential Scope}
+\label{tab:statistical-design}
+\centering\scriptsize
+\begin{tabular}{p{3.0cm}p{12.5cm}}
+\toprule
+Design element & Specification \\
+\midrule
+Experimental cell & One classifier--dataset combination; 15 cells in total (five classifiers across three datasets). \\
+Independent unit & Applicant query. Generated counterfactuals are nested within queries and are not counted as independent observations. \\
+Query sample & Ten held-out applicants with the highest model-specific predicted default probabilities in each cell; stress-test sample rather than a probability sample. \\
+Primary estimand & Query coverage: proportion of the ten queries for which at least one independently verified valid counterfactual is generated. \\
+Secondary estimands & Query-level mean number of changed features, query-level mean mixed-type proximity, and within-query mean pairwise diversity. \\
+Aggregation rule & Sparsity and proximity are first averaged across valid counterfactuals within each query, then summarized across queries to prevent unequal weighting by generation yield. \\
+Coverage uncertainty & Two-sided 95\% Wilson score confidence interval calculated separately for each model--dataset cell. \\
+Continuous uncertainty & Two-sided 95\% nonparametric percentile bootstrap interval based on 10,000 query-level resamples with replacement; fixed seed 2026. \\
+Cross-model comparison & Descriptive effect contrasts only. Model-specific query cohorts are not paired, so no paired hypothesis tests or claims of statistically significant model superiority are made. \\
+Multiplicity & No adjustment applied because the study does not conduct a family of null-hypothesis significance tests. \\
+Inferential scope & Exploratory and hypothesis-generating. Confirmatory inference requires a larger shared query cohort, repeated DiCE seeds, and a prespecified power analysis. \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
 \section{Results}
 \subsection{Predictive Performance}
 Table~\ref{tab:auc} reports ROC--AUC. XGBoost ranked first on all datasets, while the single tree ranked last. Accuracy alone was misleading under imbalance: on Give Me Some Credit, random forest accuracy was 0.934 but balanced accuracy was 0.638, whereas XGBoost achieved 0.799 and 0.787, respectively.
