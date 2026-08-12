@@ -1,0 +1,8 @@
+{
+  "unit_of_analysis": "query applicant",
+  "coverage_interval": "two-sided 95% Wilson score interval",
+  "continuous_intervals": "query-level nonparametric percentile bootstrap",
+  "bootstrap_repetitions": 10000,
+  "bootstrap_seed": 2026,
+  "interpretation": "exploratory; model-specific query cohorts are not paired across classifiers"
+}

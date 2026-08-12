@@ -34,6 +34,7 @@ conference_analysis/
 |-- figures/                 Main conference comparison figure
 |-- results/genetic/         Complete genetic DiCE outputs
 |-- scripts/run_study.py     Reproducible experiment
+|-- scripts/statistical_analysis.py Query-level uncertainty analysis
 |-- preprocess.py            Dataset loading
 |-- study_counterfactuals.py Shared constraints and preprocessing
 `-- requirements.txt
@@ -67,6 +68,16 @@ The main manuscript should contain:
 
 Detailed model-dataset plots and individual records belong in supplementary
 material or this repository.
+
+Generate the statistical summary from the repository root with:
+
+```bash
+python conference_analysis/scripts/statistical_analysis.py
+```
+
+This writes query-level Wilson and bootstrap confidence intervals to
+`conference_analysis/results/statistical_summary.csv` with analysis metadata in
+the adjacent JSON file.
 
 ## Required strengthening before submission
 
