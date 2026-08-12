@@ -1,0 +1,14 @@
+{
+  "model": "random_forest",
+  "dataset": "taiwan_credit",
+  "queries": 10,
+  "requested_counterfactuals_per_query": 4,
+  "generated_counterfactuals": 38,
+  "valid_counterfactuals": 38,
+  "validity_rate": 1.0,
+  "query_coverage": 1.0,
+  "mean_sparsity_changes": 12.447368421052632,
+  "mean_proximity": 1.4782299285432703,
+  "mean_set_diversity": 1.6260100156750859,
+  "failed_queries": 0
+}

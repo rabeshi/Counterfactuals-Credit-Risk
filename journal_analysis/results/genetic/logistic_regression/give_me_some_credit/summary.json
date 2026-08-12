@@ -1,0 +1,14 @@
+{
+  "model": "logistic_regression",
+  "dataset": "give_me_some_credit",
+  "queries": 10,
+  "requested_counterfactuals_per_query": 4,
+  "generated_counterfactuals": 17,
+  "valid_counterfactuals": 17,
+  "validity_rate": 1.0,
+  "query_coverage": 0.5,
+  "mean_sparsity_changes": 5.117647058823529,
+  "mean_proximity": 53.31932707920677,
+  "mean_set_diversity": 5.562534394911946,
+  "failed_queries": 5
+}

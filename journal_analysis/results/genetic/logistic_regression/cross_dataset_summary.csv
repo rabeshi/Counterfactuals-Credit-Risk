@@ -1,0 +1,4 @@
+model,dataset,queries,requested_counterfactuals_per_query,generated_counterfactuals,valid_counterfactuals,validity_rate,query_coverage,mean_sparsity_changes,mean_proximity,mean_set_diversity,failed_queries
+logistic_regression,german_credit,10,4,35,35,1.0,1.0,4.285714285714286,0.3873561550808741,0.11132026473318608,0
+logistic_regression,give_me_some_credit,10,4,17,17,1.0,0.5,5.117647058823529,53.31932707920677,5.562534394911946,5
+logistic_regression,taiwan_credit,10,4,37,37,1.0,1.0,13.45945945945946,1.2005064741914433,0.5508720128346967,0

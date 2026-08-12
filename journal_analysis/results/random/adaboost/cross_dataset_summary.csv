@@ -1,0 +1,4 @@
+dice_method,model,dataset,queries,requested_counterfactuals_per_query,generated_counterfactuals,valid_counterfactuals,validity_rate,query_coverage,mean_sparsity_changes,mean_proximity,mean_set_diversity,failed_queries
+random,adaboost,german_credit,10,4,40,40,1.0,1.0,2.05,0.2506462774896764,0.11201965091712282,0
+random,adaboost,give_me_some_credit,10,4,39,39,1.0,1.0,5.0256410256410255,4.8358892906328865,6.757308113602956,0
+random,adaboost,taiwan_credit,10,4,40,40,1.0,1.0,5.775,11.179337702368565,12.809447725213854,0

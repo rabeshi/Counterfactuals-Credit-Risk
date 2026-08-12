@@ -1,0 +1,11 @@
+source_index,query_rank,requested_counterfactuals,generated_counterfactuals,valid_counterfactuals,set_diversity,error
+42751,1,4,0,0,0.0,UserConfigValidationException: No counterfactuals found for any of the query points! Kindly check your configuration.
+85093,2,4,4,4,0.11666666666666665,
+53483,3,4,0,0,0.0,UserConfigValidationException: No counterfactuals found for any of the query points! Kindly check your configuration.
+140095,4,4,0,0,0.0,UserConfigValidationException: No counterfactuals found for any of the query points! Kindly check your configuration.
+56547,5,4,4,4,0.23722394911946865,
+71627,6,4,4,4,33.29006571428571,
+149153,7,4,0,0,0.0,UserConfigValidationException: No counterfactuals found for any of the query points! Kindly check your configuration.
+100712,8,4,4,4,21.98138761904762,
+98031,9,4,0,0,0.0,UserConfigValidationException: No counterfactuals found for any of the query points! Kindly check your configuration.
+67751,10,4,1,1,0.0,

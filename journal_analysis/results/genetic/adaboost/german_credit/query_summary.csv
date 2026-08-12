@@ -1,0 +1,11 @@
+source_index,query_rank,requested_counterfactuals,generated_counterfactuals,valid_counterfactuals,set_diversity,error
+832,1,4,4,4,0.10000000000000002,
+915,2,4,4,4,0.11805555555555557,
+818,3,4,2,2,0.175,
+431,4,4,4,4,0.1361111111111111,
+11,5,4,4,4,0.07916666666666666,
+229,6,4,0,0,0.0,UserConfigValidationException: No counterfactuals found for any of the query points! Kindly check your configuration.
+395,7,4,4,4,0.21135819808572617,
+602,8,4,4,4,0.07916666666666666,
+788,9,4,2,2,0.25352324018054356,
+938,10,4,3,3,0.13333333333333333,

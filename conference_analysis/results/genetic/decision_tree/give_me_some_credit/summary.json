@@ -1,0 +1,14 @@
+{
+  "model": "decision_tree",
+  "dataset": "give_me_some_credit",
+  "queries": 10,
+  "requested_counterfactuals_per_query": 4,
+  "generated_counterfactuals": 40,
+  "valid_counterfactuals": 37,
+  "validity_rate": 0.925,
+  "query_coverage": 1.0,
+  "mean_sparsity_changes": 4.0,
+  "mean_proximity": 0.5743506323490448,
+  "mean_set_diversity": 0.19818266907026943,
+  "failed_queries": 0
+}

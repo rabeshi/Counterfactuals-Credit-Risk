@@ -4,6 +4,18 @@ This repository contains a reproducible comparison of DiCE counterfactual
 explanations across three credit-risk datasets, five machine-learning models,
 and two model-agnostic counterfactual generators.
 
+## Publication tracks
+
+The repository now separates two publication scopes:
+
+- [`conference_analysis/`](conference_analysis/) contains the focused genetic
+  DiCE analysis of how classifier choice shapes recourse.
+- [`journal_analysis/`](journal_analysis/) contains the complete genetic versus
+  random-sampling analysis and the planned methodological extensions.
+
+The original root-level code and outputs remain as the canonical complete
+research artifact.
+
 ## Research question
 
 How do predictive model choice and counterfactual-generation method affect the
@@ -149,4 +161,3 @@ Mothilal, R. K., Sharma, A., & Tan, C. (2020). Explaining machine learning
 classifiers through diverse counterfactual explanations. *Proceedings of the
 2020 Conference on Fairness, Accountability, and Transparency*, 607-617.
 https://doi.org/10.1145/3351095.3372850
-

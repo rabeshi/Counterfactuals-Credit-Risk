@@ -1,0 +1,4 @@
+model,dataset,queries,requested_counterfactuals_per_query,generated_counterfactuals,valid_counterfactuals,validity_rate,query_coverage,mean_sparsity_changes,mean_proximity,mean_set_diversity,failed_queries
+decision_tree,german_credit,10,4,40,40,1.0,1.0,2.7,0.13047080572361472,0.1137798505073786,0
+decision_tree,give_me_some_credit,10,4,40,37,0.925,1.0,4.0,0.5743506323490448,0.19818266907026943,0
+decision_tree,taiwan_credit,10,4,39,39,1.0,1.0,10.179487179487179,0.4146299222917932,0.41601960390529485,0

@@ -1,0 +1,4 @@
+model,dataset,queries,requested_counterfactuals_per_query,generated_counterfactuals,valid_counterfactuals,validity_rate,query_coverage,mean_sparsity_changes,mean_proximity,mean_set_diversity,failed_queries
+random_forest,german_credit,10,4,32,32,1.0,1.0,3.03125,0.17621276439306635,0.1285072945676878,0
+random_forest,give_me_some_credit,10,4,39,39,1.0,1.0,4.564102564102564,17.496523555169954,5.850077605814703,0
+random_forest,taiwan_credit,10,4,38,38,1.0,1.0,12.447368421052632,1.4782299285432703,1.6260100156750859,0
