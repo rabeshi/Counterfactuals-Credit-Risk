@@ -1,0 +1,4 @@
+dice_method,model,dataset,queries,requested_counterfactuals_per_query,generated_counterfactuals,valid_counterfactuals,validity_rate,query_coverage,mean_sparsity_changes,mean_proximity,mean_set_diversity,failed_queries
+random,logistic_regression,german_credit,10,4,40,40,1.0,1.0,3.325,0.30099734106405457,0.1291337550817888,0
+random,logistic_regression,give_me_some_credit,10,4,40,40,1.0,1.0,2.8,87.82609957090753,23.335090348164258,0
+random,logistic_regression,taiwan_credit,10,4,40,40,1.0,1.0,1.775,8.964850955913056,9.932820382634686,0

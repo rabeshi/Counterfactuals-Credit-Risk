@@ -1,0 +1,21 @@
+{
+  "roc_auc": 0.7676800699757147,
+  "average_precision": 0.5475820862413103,
+  "accuracy": 0.8098666666666666,
+  "balanced_accuracy": 0.6737996323922091,
+  "f1": 0.5,
+  "brier_score": 0.14025925295631783,
+  "confusion_matrix": [
+    [
+      5361,
+      480
+    ],
+    [
+      946,
+      713
+    ]
+  ],
+  "n": 7500,
+  "positive_rate": 0.2212,
+  "predicted_positive_rate": 0.15906666666666666
+}

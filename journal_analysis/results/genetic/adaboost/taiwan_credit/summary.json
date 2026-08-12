@@ -1,0 +1,14 @@
+{
+  "model": "adaboost",
+  "dataset": "taiwan_credit",
+  "queries": 10,
+  "requested_counterfactuals_per_query": 4,
+  "generated_counterfactuals": 29,
+  "valid_counterfactuals": 29,
+  "validity_rate": 1.0,
+  "query_coverage": 1.0,
+  "mean_sparsity_changes": 14.517241379310345,
+  "mean_proximity": 1.3181875542924828,
+  "mean_set_diversity": 0.344487433870435,
+  "failed_queries": 0
+}

@@ -1,0 +1,4 @@
+dice_method,model,dataset,queries,requested_counterfactuals_per_query,generated_counterfactuals,valid_counterfactuals,validity_rate,query_coverage,mean_sparsity_changes,mean_proximity,mean_set_diversity,failed_queries
+random,random_forest,german_credit,10,4,40,40,1.0,1.0,2.175,0.13604856909632193,0.1467402925829892,0
+random,random_forest,give_me_some_credit,10,4,40,40,1.0,1.0,2.0,15.710119169129944,20.57020381812832,0
+random,random_forest,taiwan_credit,10,4,40,40,1.0,1.0,2.0,3.6767353009030614,4.921636247626512,0

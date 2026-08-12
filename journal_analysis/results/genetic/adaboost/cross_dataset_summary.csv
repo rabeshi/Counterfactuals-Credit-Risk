@@ -1,0 +1,4 @@
+model,dataset,queries,requested_counterfactuals_per_query,generated_counterfactuals,valid_counterfactuals,validity_rate,query_coverage,mean_sparsity_changes,mean_proximity,mean_set_diversity,failed_queries
+adaboost,german_credit,10,4,31,31,1.0,0.9,3.2903225806451615,0.3520843207776879,0.1285714771599603,1
+adaboost,give_me_some_credit,10,4,40,40,1.0,1.0,6.45,1.3296216551875202,0.16261700402104787,0
+adaboost,taiwan_credit,10,4,29,29,1.0,1.0,14.517241379310345,1.3181875542924828,0.344487433870435,0

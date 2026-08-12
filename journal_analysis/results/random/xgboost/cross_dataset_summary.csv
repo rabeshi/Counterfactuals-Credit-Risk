@@ -1,0 +1,4 @@
+dice_method,model,dataset,queries,requested_counterfactuals_per_query,generated_counterfactuals,valid_counterfactuals,validity_rate,query_coverage,mean_sparsity_changes,mean_proximity,mean_set_diversity,failed_queries
+random,xgboost,german_credit,10,4,40,40,1.0,1.0,2.0,0.15209464731585517,0.11125178062678061,0
+random,xgboost,give_me_some_credit,10,4,36,36,1.0,1.0,5.194444444444445,17.431556510897007,13.256112683636598,0
+random,xgboost,taiwan_credit,10,4,40,40,1.0,1.0,3.1,8.11537312391208,9.127428146193278,0

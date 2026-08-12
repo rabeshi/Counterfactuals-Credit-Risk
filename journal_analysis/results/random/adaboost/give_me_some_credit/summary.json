@@ -1,0 +1,15 @@
+{
+  "dice_method": "random",
+  "model": "adaboost",
+  "dataset": "give_me_some_credit",
+  "queries": 10,
+  "requested_counterfactuals_per_query": 4,
+  "generated_counterfactuals": 39,
+  "valid_counterfactuals": 39,
+  "validity_rate": 1.0,
+  "query_coverage": 1.0,
+  "mean_sparsity_changes": 5.0256410256410255,
+  "mean_proximity": 4.8358892906328865,
+  "mean_set_diversity": 6.757308113602956,
+  "failed_queries": 0
+}

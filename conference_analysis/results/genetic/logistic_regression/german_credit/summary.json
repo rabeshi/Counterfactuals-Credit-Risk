@@ -1,0 +1,14 @@
+{
+  "model": "logistic_regression",
+  "dataset": "german_credit",
+  "queries": 10,
+  "requested_counterfactuals_per_query": 4,
+  "generated_counterfactuals": 35,
+  "valid_counterfactuals": 35,
+  "validity_rate": 1.0,
+  "query_coverage": 1.0,
+  "mean_sparsity_changes": 4.285714285714286,
+  "mean_proximity": 0.3873561550808741,
+  "mean_set_diversity": 0.11132026473318608,
+  "failed_queries": 0
+}

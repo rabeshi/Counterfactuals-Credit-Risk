@@ -1,0 +1,14 @@
+{
+  "model": "xgboost",
+  "dataset": "give_me_some_credit",
+  "queries": 10,
+  "requested_counterfactuals_per_query": 4,
+  "generated_counterfactuals": 40,
+  "valid_counterfactuals": 38,
+  "validity_rate": 0.95,
+  "query_coverage": 1.0,
+  "mean_sparsity_changes": 5.2894736842105265,
+  "mean_proximity": 10.334949875379925,
+  "mean_set_diversity": 0.24812151506658792,
+  "failed_queries": 0
+}

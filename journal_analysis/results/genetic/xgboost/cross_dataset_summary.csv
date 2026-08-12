@@ -1,0 +1,4 @@
+model,dataset,queries,requested_counterfactuals_per_query,generated_counterfactuals,valid_counterfactuals,validity_rate,query_coverage,mean_sparsity_changes,mean_proximity,mean_set_diversity,failed_queries
+xgboost,german_credit,10,4,35,35,1.0,1.0,3.257142857142857,0.23552640243651482,0.1332786740932808,0
+xgboost,give_me_some_credit,10,4,40,38,0.95,1.0,5.2894736842105265,10.334949875379925,0.24812151506658792,0
+xgboost,taiwan_credit,10,4,38,38,1.0,1.0,13.842105263157896,1.021544752186989,0.4613361494009537,0
